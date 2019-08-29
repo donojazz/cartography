@@ -26,6 +26,8 @@
 #' not (FALSE).
 #' @param legend.nodata no data label.
 #' @param colNA no data color. 
+#' @param cex cex
+#' @param pch pch
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
 #' @seealso \link{propSymbolsTypoLayer}, \link{typoLayer}, \link{legendTypo}
@@ -50,7 +52,8 @@ typoLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                       legend.values.cex = 0.6,
                       legend.values.order = NULL,
                       legend.nodata = "no data",
-                      legend.frame = FALSE,
+                      legend.frame = FALSE, pch = 20,cex = 2, 
+                      pchNA = 8,
                       add = FALSE)
 {
   if (missing(x)){
@@ -63,6 +66,7 @@ typoLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
   
   # check nb col vs nb mod
   col <- checkCol(col, mod)
+  pch <- checkPch(pch, mod)
   
   # check legend.values.order vs mod values
   legend.values.order <- checkOrder(legend.values.order, mod)
@@ -70,33 +74,74 @@ typoLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
   
   # get the colors 
   refcol <- data.frame(mod = legend.values.order, 
-                       col = col[1:length(legend.values.order)], 
+                       col = col[1:length(legend.values.order)],
+                       pch = pch[1:length(legend.values.order)],
                        stringsAsFactors = FALSE)
-  colvec <- refcol[match(x[[var]], refcol[,1]),2]
+
+  colVec <- refcol[match(x[[var]], refcol[,1]),2]
+  pchVec <- refcol[match(x[[var]], refcol[,1]),3]
+  
   
   # for NA values
   nodata <- FALSE
   if(max(is.na(x[[var]]) > 0)){
     nodata <- TRUE
-    colvec[is.na(colvec)] <- colNA
+    colVec[is.na(colVec)] <- colNA
+    pchVec[is.na(pchVec)] <- pchNA
   }
   
   # plot
-  if(max(class(sf::st_geometry(x)) %in% c("sfc_MULTILINESTRING"))==1){
-    plot(sf::st_geometry(x), col = colvec, lwd = lwd, add = add)
-  }else{
-    plot(sf::st_geometry(x), col = colvec, border = border, lwd = lwd, 
-         add = add)
+  if (is(sf::st_geometry(x), c("sfc_LINESTRING", "sfc_MULTILINESTRING"))){
+    cx <- 'line'
   }
-
+  if (is(sf::st_geometry(x), c("sfc_POLYGON", "sfc_MULTIPOLYGON"))){
+    cx <- 'poly'
+  }
+  if (is(sf::st_geometry(x), c("sfc_POINT", "sfc_MULTIPOINT"))){
+    cx <- 'point'
+  }
+  
+  
+  
+  switch(
+    cx, 
+    line = {
+      plot(sf::st_geometry(x), col = colVec, lwd = lwd, add = add)
+      symbol <- "line"
+    }, 
+    poly = {plot(sf::st_geometry(x), col = colVec, border = border, 
+                 lwd = lwd, add = add)
+      legend.border <- border
+      symbol <- "box"
+    }, 
+    point = {
+      bg <- rep(NA, length(pchVec))
+      bg[pchVec %in% 21:25] <- colVec[pchVec %in% 21:25]
+      colVec[pchVec %in% 21:25] <- border
+      plot(sf::st_geometry(x), col = colVec, pch = pchVec, cex = cex[1], 
+           lwd = lwd, add = add, bg = bg)
+      symbol <- "point"
+      legend.border <- border
+    }
+  )
+  
+  
+  
+  
+  
+  
   legendTypo(pos = legend.pos, title.txt = legend.title.txt,
              title.cex = legend.title.cex, values.cex = legend.values.cex,
              categ = refcol[,1], 
              col = refcol[,2], 
+             pch = refcol[,3],
+             pt.cex = cex[1],
+             border = legend.border,
              frame = legend.frame, 
-             symbol="box", 
+             symbol = symbol, 
              nodata = nodata,
              nodata.col = colNA,
+             nodata.pch = pchNA,
              nodata.txt = legend.nodata)
   
 }

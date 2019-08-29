@@ -182,10 +182,14 @@ legendChoro <- function(pos = "topleft",
 #' @param title.cex size of the legend title.
 #' @param values.cex size of the values in the legend.
 #' @param col a vector of colors. 
+#' @param pch a vector of pch. 
 #' @param cex size of the legend. 2 means two times bigger.
 #' @param nodata if TRUE a "no data" box or line is plotted.
 #' @param nodata.txt label for "no data" values. 
 #' @param nodata.col color of "no data" values.
+#' @param nodata.pch pch of "no data" values.
+#' @param pt.cex point cex
+#' @param border color of the box borders
 #' @param frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
 #' @param symbol character; 'line' or 'box'
@@ -213,16 +217,17 @@ legendTypo <- function(pos = "topleft",
                        title.txt = "Title of the legend", 
                        title.cex = 0.8,
                        values.cex = 0.6, 
-                       col, categ,
+                       col, categ, pch, border,
                        cex = 1,
                        nodata = TRUE, 
                        nodata.txt = "No data", 
                        nodata.col = "white",
-                       frame=FALSE,
+                       nodata.pch = 8, pt.cex = 2,
+                       frame = FALSE,
                        symbol="box"){
   categ <- rev(as.character(categ))
   col <- rev(col)
-  
+  pch <- rev(pch)
   # exit for none
   positions <- c("bottomleft", "topleft", "topright", "bottomright",
                  "left", "right", "top", "bottom", "center", 
@@ -287,7 +292,7 @@ legendTypo <- function(pos = "topleft",
     for (i in 0:(length(categ)-1)){
       rect(xref, yref + i * height + i * delta2, xref + width, 
            yref + height + i * height + i * delta2, 
-           col = col[i + 1], border = "black", lwd = 0.4)
+           col = col[i + 1], border = border, lwd = 0.4)
       j <- i+1
       text(x = xref + width + delta2 , 
            y = yref + height / 2 + i * height + i * delta2, 
@@ -308,6 +313,30 @@ legendTypo <- function(pos = "topleft",
       
     }
   }
+  
+  if (symbol=="point"){
+    for (i in 0:(length(categ)-1)){
+      
+      points(x = xref + width / 2, 
+             y = yref + height / 2 + i * height + i * delta2,
+             cex = pt.cex, 
+             pch = pch[i+1], bg = bg[i+1],
+             col = col[i+1])
+      # 
+      # 
+      # segments(xref, yref + height / 2 + i * height + i * delta2, xref + width, 
+      #          yref + i * height + i * delta2 + height / 2, lwd = 5, 
+      #          col = col[i + 1], lend = 1)
+      j <- i+1
+      text(xref + width + delta2, 
+           y = yref + height / 2 + i * height + i * delta2, labels = categ[j], 
+           adj = c(0,0.5), cex = values.cex)
+      
+    }
+  
+  }
+  
+  
   # Affichage du titre
   text(x = xref, 
        y = yref + length(categ) * height + length(categ) * delta2 + delta2, 

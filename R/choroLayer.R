@@ -109,6 +109,7 @@ choroLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
     nodata <- TRUE
     colVec[is.na(colVec)] <- colNA
   }
+ 
   # plot
   if (is(sf::st_geometry(x), c("sfc_LINESTRING", "sfc_MULTILINESTRING"))){
     cx <- 'line'
@@ -129,6 +130,7 @@ choroLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
     poly = {plot(sf::st_geometry(x), col = colVec, border = border, 
                  lwd = lwd, add = add)
       symbol <- "box"
+      legend.border <- border
     }, 
     point = {
       if (pch %in% 21:25){

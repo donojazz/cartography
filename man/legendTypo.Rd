@@ -5,9 +5,10 @@
 \title{Legend for Typology Maps}
 \usage{
 legendTypo(pos = "topleft", title.txt = "Title of the legend",
-  title.cex = 0.8, values.cex = 0.6, col, categ, cex = 1,
-  nodata = TRUE, nodata.txt = "No data", nodata.col = "white",
-  frame = FALSE, symbol = "box")
+  title.cex = 0.8, values.cex = 0.6, col, categ, pch, border,
+  cex = 1, nodata = TRUE, nodata.txt = "No data",
+  nodata.col = "white", nodata.pch = 8, pt.cex = 2, frame = FALSE,
+  symbol = "box")
 }
 \arguments{
 \item{pos}{position of the legend, one of "topleft", "top", 
@@ -25,6 +26,10 @@ legendTypo(pos = "topleft", title.txt = "Title of the legend",
 
 \item{categ}{vector of categories.}
 
+\item{pch}{a vector of pch.}
+
+\item{border}{color of the box borders}
+
 \item{cex}{size of the legend. 2 means two times bigger.}
 
 \item{nodata}{if TRUE a "no data" box or line is plotted.}
@@ -32,6 +37,10 @@ legendTypo(pos = "topleft", title.txt = "Title of the legend",
 \item{nodata.txt}{label for "no data" values.}
 
 \item{nodata.col}{color of "no data" values.}
+
+\item{nodata.pch}{pch of "no data" values.}
+
+\item{pt.cex}{point cex}
 
 \item{frame}{whether to add a frame to the legend (TRUE) or 
 not (FALSE).}

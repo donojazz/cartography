@@ -99,6 +99,35 @@ checkCol <- function(col, mod){
   return(col)
 }
 
+
+
+
+#' @name checkPch
+#' @title checkCol
+#' @description check if pch length matches modalities length
+#' @param pch vector of pch
+#' @param mod vector of modalities
+#' @return a vector of pch
+#' @noRd
+checkPch <- function(pch, mod){
+  if (is.null(pch)){
+    pch <- rep(20, length(mod))
+  }
+  if (length(pch) == 1){
+    pch <- rep(pch, length(mod))
+  }else{
+    if (length(pch) < length(mod)){
+      stop(paste("'pch' length (",length(pch),
+                 ") must fit the number of modalities of the variable (",
+                 length(mod),").",sep = ""),
+           call. = FALSE)
+    }
+  }
+  return(pch)
+}
+
+
+
 #' @name checkOrder
 #' @title checkOrder
 #' @description check if col order match legend.values.order
