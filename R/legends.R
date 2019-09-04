@@ -142,7 +142,6 @@ legendChoro <- function(pos = "topleft",
     }
     if (symbol == "point"){
       if (pch %in% 21:25){
-        print(col)
         bg <- col
         col <- border 
         col <- rep(col, length(breaks)-1)
@@ -217,7 +216,7 @@ legendTypo <- function(pos = "topleft",
                        title.txt = "Title of the legend", 
                        title.cex = 0.8,
                        values.cex = 0.6, 
-                       col, categ, pch, border,
+                       col, categ, pch = 21, border = "black",
                        cex = 1,
                        nodata = TRUE, 
                        nodata.txt = "No data", 
@@ -315,6 +314,16 @@ legendTypo <- function(pos = "topleft",
   }
   
   if (symbol=="point"){
+    
+    if (pch %in% 21:25){
+      bg <- col
+      col <- border 
+      col <- rep(col, length(bg))
+      
+    }else{
+      bg <- NA
+    }
+    
     for (i in 0:(length(categ)-1)){
       
       points(x = xref + width / 2, 

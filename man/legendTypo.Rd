@@ -5,8 +5,8 @@
 \title{Legend for Typology Maps}
 \usage{
 legendTypo(pos = "topleft", title.txt = "Title of the legend",
-  title.cex = 0.8, values.cex = 0.6, col, categ, pch, border,
-  cex = 1, nodata = TRUE, nodata.txt = "No data",
+  title.cex = 0.8, values.cex = 0.6, col, categ, pch = 21,
+  border = "black", cex = 1, nodata = TRUE, nodata.txt = "No data",
   nodata.col = "white", nodata.pch = 8, pt.cex = 2, frame = FALSE,
   symbol = "box")
 }
