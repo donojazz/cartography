@@ -26,6 +26,7 @@
 #' not (FALSE).
 #' @param legend.nodata no data label.
 #' @param colNA no data color. 
+#' @param pchNA no data pch
 #' @param cex cex
 #' @param pch pch
 #' @param add whether to add the layer to an existing plot (TRUE) or 

@@ -59,6 +59,8 @@ not (FALSE).}
 
 \item{cex}{cex}
 
+\item{pchNA}{no data pch}
+
 \item{add}{whether to add the layer to an existing plot (TRUE) or 
 not (FALSE).}
 }
