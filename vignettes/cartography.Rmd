@@ -81,16 +81,16 @@ path_to_gpkg <- system.file("gpkg/mtq.gpkg", package="cartography")
 # import to an sf object
 mtq <- st_read(dsn = path_to_gpkg, quiet = TRUE)
 # download osm tiles
-mtq.osm <- getTiles(
-  x = mtq, 
-  type = "osm", 
-  zoom = 11, 
-  crop = TRUE
-)
-# plot osm tiles
-tilesLayer(x = mtq.osm)
+# mtq.osm <- getTiles(
+#   x = mtq, 
+#   type = "osm", 
+#   zoom = 11, 
+#   crop = TRUE
+# )
+# # plot osm tiles
+# tilesLayer(x = mtq.osm)
 # plot municipalities (only borders are plotted)
-plot(st_geometry(mtq), col = NA, border = "grey", add=TRUE)
+plot(st_geometry(mtq), col = NA, border = "grey", add=FALSE)
 # plot population
 propSymbolsLayer(
   x = mtq, 
