@@ -35,8 +35,9 @@
 #' @param legend.horiz whether to display the legend horizontally (TRUE) or
 #' not (FALSE).
 #' @param colNA no data color. 
-#' @param cex cex
-#' @param pch pch
+#' @param pchNA no data pch. 
+#' @param cex cex of the symbol if x is a POINT object. 
+#' @param pch symbol used if x is a POINT object.
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
 #' @details 
@@ -79,7 +80,11 @@
 choroLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var, 
                        breaks = NULL, method = "quantile", nclass = NULL,
                        col = NULL,
-                       border = "grey20", lwd = 1,
+                       border = "grey20", 
+                       lwd = 1, 
+                       pch = 20, 
+                       cex = 1,
+                       pchNA = 4,
                        colNA = "white",
                        legend.pos = "bottomleft", 
                        legend.title.txt = var,
@@ -90,8 +95,6 @@ choroLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                        legend.frame = FALSE,
                        legend.border = "black",
                        legend.horiz = FALSE,
-                       pch = 20, 
-                       cex = 2,
                        add = FALSE){
   
   if (missing(x)){
@@ -157,6 +160,7 @@ choroLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
               pt.cex = cex, 
               pch = pch,
               symbol = symbol,  
+              nodata.pch = pchNA,
               nodata.col = colNA,
               nodata = nodata, 
               nodata.txt = legend.nodata, 

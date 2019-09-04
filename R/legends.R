@@ -20,6 +20,7 @@
 #' @param nodata if TRUE a "no data" box or line is plotted.
 #' @param nodata.txt label for "no data" values. 
 #' @param nodata.col color of "no data" values.
+#' @param nodata.col pch of "no data" values.
 #' @param frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
 #' @param symbol type of symbol in the legend 'line' or 'box'
@@ -61,6 +62,7 @@ legendChoro <- function(pos = "topleft",
                         nodata = TRUE, 
                         nodata.txt = "No data", 
                         nodata.col = "white",
+                        nodata.pch = 4,
                         frame = FALSE, 
                         symbol = "box", 
                         border = "black", 
