@@ -6,12 +6,12 @@
 \usage{
 choroLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var,
   breaks = NULL, method = "quantile", nclass = NULL, col = NULL,
-  border = "grey20", lwd = 1, colNA = "white",
-  legend.pos = "bottomleft", legend.title.txt = var,
+  border = "grey20", lwd = 1, pch = 20, cex = 1, pchNA = 4,
+  colNA = "white", legend.pos = "bottomleft", legend.title.txt = var,
   legend.title.cex = 0.8, legend.values.cex = 0.6,
   legend.values.rnd = 0, legend.nodata = "no data",
   legend.frame = FALSE, legend.border = "black",
-  legend.horiz = FALSE, pch = 20, cex = 2, add = FALSE)
+  legend.horiz = FALSE, add = FALSE)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection. If x is used then spdf, df, spdfid and dfid are not.}
@@ -44,6 +44,12 @@ colors specified than the number of break.}
 
 \item{lwd}{borders width.}
 
+\item{pch}{symbol used if x is a POINT object.}
+
+\item{cex}{cex of the symbol if x is a POINT object.}
+
+\item{pchNA}{no data pch.}
+
 \item{colNA}{no data color.}
 
 \item{legend.pos}{position of the legend, one of "topleft", "top", 
@@ -69,10 +75,6 @@ not (FALSE).}
 
 \item{legend.horiz}{whether to display the legend horizontally (TRUE) or
 not (FALSE).}
-
-\item{pch}{pch}
-
-\item{cex}{cex}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or 
 not (FALSE).}

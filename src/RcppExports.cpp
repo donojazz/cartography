@@ -8,15 +8,15 @@ using namespace Rcpp;
 // is_overlap
 RcppExport SEXP is_overlap(SEXP x11, SEXP y11, SEXP sw11, SEXP sh11, SEXP boxes1);
 RcppExport SEXP _cartography_is_overlap(SEXP x11SEXP, SEXP y11SEXP, SEXP sw11SEXP, SEXP sh11SEXP, SEXP boxes1SEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< SEXP >::type x11(x11SEXP);
-    Rcpp::traits::input_parameter< SEXP >::type y11(y11SEXP);
-    Rcpp::traits::input_parameter< SEXP >::type sw11(sw11SEXP);
-    Rcpp::traits::input_parameter< SEXP >::type sh11(sh11SEXP);
-    Rcpp::traits::input_parameter< SEXP >::type boxes1(boxes1SEXP);
-    rcpp_result_gen = Rcpp::wrap(is_overlap(x11, y11, sw11, sh11, boxes1));
-    return rcpp_result_gen;
-END_RCPP
+  BEGIN_RCPP
+  Rcpp::RObject rcpp_result_gen;
+  Rcpp::RNGScope rcpp_rngScope_gen;
+  Rcpp::traits::input_parameter< SEXP >::type x11(x11SEXP);
+  Rcpp::traits::input_parameter< SEXP >::type y11(y11SEXP);
+  Rcpp::traits::input_parameter< SEXP >::type sw11(sw11SEXP);
+  Rcpp::traits::input_parameter< SEXP >::type sh11(sh11SEXP);
+  Rcpp::traits::input_parameter< SEXP >::type boxes1(boxes1SEXP);
+  rcpp_result_gen = Rcpp::wrap(is_overlap(x11, y11, sw11, sh11, boxes1));
+  return rcpp_result_gen;
+  END_RCPP
 }
