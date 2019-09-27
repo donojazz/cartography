@@ -45,6 +45,8 @@ the legend.}
 
 \item{nodata.col}{color of "no data" values.}
 
+\item{nodata.pch}{pch of "no data" values.}
+
 \item{frame}{whether to add a frame to the legend (TRUE) or 
 not (FALSE).}
 
@@ -53,8 +55,6 @@ not (FALSE).}
 \item{border}{color of the box borders}
 
 \item{horiz}{layout of legend, TRUE for horizontal layout}
-
-\item{nodata.col}{pch of "no data" values.}
 }
 \description{
 Plot legend for choropleth maps.
